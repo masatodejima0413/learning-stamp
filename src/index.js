@@ -7,6 +7,7 @@ import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
+  //react-reduxのやつでstoreが更新されるとUIが更新されるってやつ多分
   <Provider store={store}>
     <App />
     {/* <NameForm /> */}

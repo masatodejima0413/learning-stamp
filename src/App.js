@@ -3,14 +3,17 @@ import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
   const [value, setValue] = useState("");
+  //combinereducerからtodoを取り出してくる、これでstore.dispatchとか書かないでよい
   const todos = useSelector((state) => state.todos);
+  //dispatchつかうためにこれ
   const dispatch = useDispatch();
 
-  const handleSubmit = (event) => {
+  const handleSubmit = () => {
     dispatch({
       type: "ADD",
       comment: value,
     });
+    //value={value}でinputの中身をからにする
     setValue("");
   };
 
