@@ -2,25 +2,31 @@ import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 const App = () => {
-  const [value, setValue] = useState("");
+  const [id, setId] = useState();
+  const [learned, setLearned] = useState("");
+  const [date, setDate] = useState();
+  const [comment, setComment] = useState("");
   //combinereducerからtodoを取り出してくる、これでstore.dispatchとか書かないでよい
-  const todos = useSelector((state) => state.todos);
+  const learnedItems = useSelector((state) => state.learnedItems);
   //dispatchつかうためにこれ
   const dispatch = useDispatch();
 
   const handleSubmit = () => {
     dispatch({
       type: "ADD",
-      comment: value,
+      id: id,
+      learned: learned,
+      date: date,
+      comment: comment,
     });
     //value={value}でinputの中身をからにする
-    setValue("");
+    setComment("");
   };
 
   return (
     <div>
-      todos
-      {todos.map((item) => {
+      learnedItems
+      {learnedItems.map((item) => {
         return (
           <div>
             <p>{item.comment}</p>
@@ -36,12 +42,32 @@ const App = () => {
         );
       })}
       <input
-        type="text"
-        placeholder="inputplease"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
+        type="number"
+        placeholder="enter id"
+        value={id}
+        onChange={(e) => setId(e.target.value)}
       />
-      <button onClick={handleSubmit}>Submit!!!</button>
+      <input
+        type="text"
+        placeholder="enter learned"
+        value={learned}
+        onChange={(e) => setLearned(e.target.value)}
+      />
+      <input
+        type="date"
+        placeholder="enter date"
+        value={date}
+        onChange={(e) => setDate(e.target.value)}
+      />
+      <input
+        type="text"
+        placeholder="enter comment"
+        value={comment}
+        onChange={(e) => setComment(e.target.value)}
+      />
+      <button onClick={handleSubmit} value="">
+        Submit!!
+      </button>
     </div>
   );
 };

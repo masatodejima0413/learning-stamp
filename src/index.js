@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./App";
-import NameForm from "./Form";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
@@ -10,7 +9,6 @@ ReactDOM.render(
   //react-reduxのやつでstoreが更新されるとUIが更新されるってやつ多分
   <Provider store={store}>
     <App />
-    {/* <NameForm /> */}
   </Provider>,
   document.getElementById("root")
 );
