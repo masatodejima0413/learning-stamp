@@ -1,13 +1,13 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
+import LearnedItem from "./components/LearnedItem/LearnedItem";
 
 const App = () => {
   const [id, setId] = useState();
   const [learned, setLearned] = useState("");
   const [date, setDate] = useState();
   const [comment, setComment] = useState("");
-  //combinereducerからtodoを取り出してくる、これでstore.dispatchとか書かないでよい
-  const learnedItems = useSelector((state) => state.learnedItems);
+
   //dispatchつかうためにこれ
   const dispatch = useDispatch();
 
@@ -20,13 +20,16 @@ const App = () => {
       comment: comment,
     });
     //value={value}でinputの中身をからにする
+    setId("");
+    setLearned("");
+    setDate("");
     setComment("");
   };
 
   return (
     <div>
       learnedItems
-      {learnedItems.map((item) => {
+      {/* {learnedItems.map((item) => {
         return (
           <div>
             <p>{item.comment}</p>
@@ -40,7 +43,7 @@ const App = () => {
             ></button>
           </div>
         );
-      })}
+      })} */}
       <input
         type="number"
         placeholder="enter id"
@@ -68,6 +71,7 @@ const App = () => {
       <button onClick={handleSubmit} value="">
         Submit!!
       </button>
+      <LearnedItem />
     </div>
   );
 };
