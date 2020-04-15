@@ -4,6 +4,7 @@ import App from "./App";
 import { Provider } from "react-redux";
 import store from "./redux/store";
 import * as serviceWorker from "./serviceWorker";
+import "./styles.css";
 
 ReactDOM.render(
   //react-reduxのやつでstoreが更新されるとUIが更新されるってやつ多分

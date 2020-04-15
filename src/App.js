@@ -1,12 +1,21 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import LearnedItem from "./components/LearnedItem/LearnedItem";
+import Title from "./components/Title/Title";
 
 const App = () => {
-  const [id, setId] = useState();
+  const id = 0;
   const [learned, setLearned] = useState("");
   const [date, setDate] = useState();
   const [comment, setComment] = useState("");
+
+  var today = new Date();
+  today.setDate(today.getDate());
+  var yyyy = today.getFullYear();
+  var mm = ("0" + (today.getMonth() + 1)).slice(-2);
+  var dd = ("0" + today.getDate()).slice(-2);
+  var initialValue = `${yyyy}-${mm}-${dd}`;
+  // setDate(initialValue);
 
   //dispatchつかうためにこれ
   const dispatch = useDispatch();
@@ -20,15 +29,14 @@ const App = () => {
       comment: comment,
     });
     //value={value}でinputの中身をからにする
-    setId("");
     setLearned("");
-    setDate("");
+    setDate(initialValue);
     setComment("");
   };
 
   return (
     <div>
-      learnedItems
+      <Title />
       {/* {learnedItems.map((item) => {
         return (
           <div>
@@ -44,12 +52,6 @@ const App = () => {
           </div>
         );
       })} */}
-      <input
-        type="number"
-        placeholder="enter id"
-        value={id}
-        onChange={(e) => setId(e.target.value)}
-      />
       <input
         type="text"
         placeholder="enter learned"

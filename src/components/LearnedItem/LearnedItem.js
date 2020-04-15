@@ -1,6 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { StyledLearnedItem } from "./LearnedItem.styles";
+import {
+  StyledLearnedItem,
+  StyledLearnedItemsContainer,
+  StyledLearned,
+  StyledDate,
+  StyledComment,
+  DeleteIcon,
+} from "./LearnedItem.styles";
 
 const LearnedItem = () => {
   //combinereducerからtodoを取り出してくる、これでstore.dispatchとか書かないでよい
@@ -8,25 +15,25 @@ const LearnedItem = () => {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <StyledLearnedItemsContainer>
       {learnedItems.map((item) => {
         return (
           <StyledLearnedItem>
-            <p>{item.comment}</p>
-            <button
+            <StyledLearned>{item.learned}</StyledLearned>
+            <StyledDate>{item.date}</StyledDate>
+            <StyledComment>{item.comment}</StyledComment>
+            <DeleteIcon
               onClick={() =>
                 dispatch({
                   type: "DELETE",
                   comment: item.comment,
                 })
               }
-            >
-              DELETE!!!
-            </button>
+            />
           </StyledLearnedItem>
         );
       })}
-    </>
+    </StyledLearnedItemsContainer>
   );
 };
 
