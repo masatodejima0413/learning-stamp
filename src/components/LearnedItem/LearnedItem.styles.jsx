@@ -4,7 +4,7 @@ import { DeleteBin3 } from "@styled-icons/remix-line/DeleteBin3";
 export const StyledLearnedItem = styled.div`
   margin: 50px;
   padding: 30px;
-  width: 300px;
+  width: 400px;
   min-height: 100px;
   font-family: "Poppins", sans-serif;
   border-radius: 10px;
@@ -38,6 +38,9 @@ export const StyledLearned = styled.p`
   font-size: 40px;
   color: #3a3335;
   margin: 0;
+  text-align: center;
+  max-width: 60%;
+  word-wrap: break-word;
 `;
 
 export const StyledDate = styled.p`
@@ -45,12 +48,16 @@ export const StyledDate = styled.p`
   color: #e91e63;
   opacity: 0.6;
   margin: 0;
+  text-align: center;
 `;
 
 export const StyledComment = styled.p`
   font-size: 20px;
   color: #3a3335;
   margin: 30px 0 0;
+  text-align: center;
+  max-width: 80%;
+  word-wrap: break-word;
 `;
 
 export const DeleteIcon = styled(DeleteBin3)`
@@ -61,6 +68,7 @@ export const DeleteIcon = styled(DeleteBin3)`
   top: 30px;
   right: 30px;
   transition: all 0.3s ease;
+  cursor: pointer;
   &:hover {
     transform: scale(1.3, 1.3);
   }
