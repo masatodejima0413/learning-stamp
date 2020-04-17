@@ -18,7 +18,7 @@ const LearnedItem = () => {
     <StyledLearnedItemsContainer>
       {learnedItems.map((item) => {
         return (
-          <StyledLearnedItem>
+          <StyledLearnedItem key={item.id}>
             <StyledLearned>{item.learned}</StyledLearned>
             <StyledDate>{item.date}</StyledDate>
             <StyledComment>{item.comment}</StyledComment>
@@ -26,7 +26,7 @@ const LearnedItem = () => {
               onClick={() =>
                 dispatch({
                   type: "DELETE",
-                  comment: item.comment,
+                  id: item.id,
                 })
               }
             />
