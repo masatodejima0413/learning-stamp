@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 import {
   StyledFormWrapper,
   StyledLearnedInput,
@@ -7,11 +6,13 @@ import {
   StyledCommentTextarea,
   SendIcon,
 } from "./Form.styles";
+import uuid from "react-uuid";
+import { stampsRef } from "../../base/base";
 
 const Form = () => {
-  const id = 0;
+  const id = uuid();
   const [learned, setLearned] = useState("");
-  const [date, setDate] = useState();
+  const [date, setDate] = useState("");
   const [comment, setComment] = useState("");
 
   //当日をyyyy-mm-ddで
@@ -24,17 +25,8 @@ const Form = () => {
   //   console.log(initialValue);
   // setDate(initialValue);
 
-  //dispatchつかうためにこれ
-  const dispatch = useDispatch();
-
   const handleSubmit = () => {
-    dispatch({
-      type: "ADD",
-      id: id,
-      learned: learned,
-      date: date,
-      comment: comment,
-    });
+    stampsRef.push().set({ learned, date, comment });
     //value={value}でinputの中身をからにする
     setLearned("");
     setDate("");
