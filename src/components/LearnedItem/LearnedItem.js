@@ -18,9 +18,7 @@ const LearnedItem = () => {
     const db = firebase.database();
     let ref = db.ref("learning-stamp/");
     ref.on("value", (snapshot) => {
-      console.log(snapshot.val());
       setExState(snapshot.val());
-      console.log(exState);
     });
   };
   useEffect(() => {
