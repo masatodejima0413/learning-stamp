@@ -7,5 +7,5 @@ const config = {
 };
 
 firebase.initializeApp(config);
-const databaseRef = firebase.database().ref();
-export const stampsRef = databaseRef.child("learning-stamp");
+export const database = firebase.database();
+export const databaseRef = firebase.database().ref();
