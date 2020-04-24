@@ -1,11 +1,14 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const Title = () => {
   return (
     <StyledTitleContainer>
       <StyledTitle>
-        <span>L</span>earning<span>S</span>tamp
+        <Link to="/">
+          <span>L</span>earning<span>S</span>tamp
+        </Link>
       </StyledTitle>
     </StyledTitleContainer>
   );
@@ -17,12 +20,10 @@ const StyledTitle = styled.p`
   font-size: 50px;
   font-family: "Poppins", sans-serif;
   font-weight: 900;
-  color: #e91e63;
-  /* opacity: 0.5;
-  span {
-    font-size: 70px;
-    color: #5d02ff;
-  } */
+  a {
+    text-decoration: none;
+    color: #e91e63;
+  }
 `;
 
 const StyledTitleContainer = styled.div`

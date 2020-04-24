@@ -10,7 +10,8 @@ export const StyledFormWrapper = styled.div`
   margin: 20px auto 50px auto;
   padding: 30px;
   font-family: "Poppins", sans-serif;
-  background-color: #353167;
+  /* background-color: #93b5c6; */
+  background: rgba(93, 2, 255, 0.4);
   border-radius: 10px;
   position: relative;
   &::before {

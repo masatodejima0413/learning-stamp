@@ -1,15 +1,22 @@
 import React from "react";
-import LearnedItem from "./components/LearnedItem/LearnedItem";
 import Title from "./components/Title/Title";
-import Form from "./components/Form/Form";
+import Home from "./components/Login/Home";
+import Main from "./components/Main/Main";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 const App = () => {
   return (
-    <>
+    <Router>
       <Title />
-      <Form />
-      <LearnedItem />
-    </>
+      <Switch>
+        <Route path="/" exact>
+          <Home />
+        </Route>
+        <Route>
+          <Main path="/:userid" exact />
+        </Route>
+      </Switch>
+    </Router>
   );
 };
 

@@ -6,11 +6,9 @@ import {
   StyledCommentTextarea,
   SendIcon,
 } from "./Form.styles";
-import uuid from "react-uuid";
-import { stampsRef } from "../../base/base";
+import { databaseRef } from "../../../base/base";
 
-const Form = () => {
-  const id = uuid();
+const Form = ({ userId }) => {
   const [learned, setLearned] = useState("");
   const [date, setDate] = useState("");
   const [comment, setComment] = useState("");
@@ -26,7 +24,12 @@ const Form = () => {
   // setDate(initialValue);
 
   const handleSubmit = () => {
-    stampsRef.push().set({ learned, date, comment });
+    databaseRef
+      .child("users")
+      .child(userId)
+      .child("items")
+      .push()
+      .set({ learned, date, comment });
     //value={value}でinputの中身をからにする
     setLearned("");
     setDate("");

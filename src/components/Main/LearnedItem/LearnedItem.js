@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-import firebase from "firebase";
-import { stampsRef } from "../../base/base";
+import { database, databaseRef } from "../../../base/base";
 
 import {
   StyledLearnedItem,
@@ -11,12 +10,11 @@ import {
   DeleteIcon,
 } from "./LearnedItem.styles";
 
-const LearnedItem = () => {
+const LearnedItem = ({ userId }) => {
   const [exState, setExState] = useState({});
 
   const getDb = () => {
-    const db = firebase.database();
-    let ref = db.ref("learning-stamp/");
+    let ref = database.ref(`users/${userId}/items`);
     ref.on("value", (snapshot) => {
       setExState(snapshot.val());
     });
@@ -26,7 +24,7 @@ const LearnedItem = () => {
   }, []);
 
   const deleteItem = (key) => {
-    stampsRef.child(key).remove();
+    databaseRef.child("users").child(userId).child("items").child(key).remove();
   };
 
   const noItem = exState === null;
@@ -39,7 +37,7 @@ const LearnedItem = () => {
         Object.keys(exState).map((key) => {
           const item = exState[key];
           return (
-            <StyledLearnedItem key={item.id}>
+            <StyledLearnedItem key={key}>
               <StyledLearned>{item.learned}</StyledLearned>
               <StyledDate>{item.date}</StyledDate>
               <StyledComment>{item.comment}</StyledComment>
