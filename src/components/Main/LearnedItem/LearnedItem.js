@@ -11,31 +11,32 @@ import {
 } from "./LearnedItem.styles";
 
 const LearnedItem = ({ userId }) => {
-  const [exState, setExState] = useState({});
+  const [users, setUsers] = useState({});
 
   const getDb = () => {
     let ref = database.ref(`users/${userId}/items`);
     ref.on("value", (snapshot) => {
-      setExState(snapshot.val());
+      setUsers(snapshot.val());
     });
   };
   useEffect(() => {
     getDb();
+    // eslint-disable-next-line
   }, []);
 
   const deleteItem = (key) => {
     databaseRef.child("users").child(userId).child("items").child(key).remove();
   };
 
-  const noItem = exState === null;
+  const noItem = users === null;
 
   return (
     <StyledLearnedItemsContainer>
       {noItem ? (
         <h1>No item found</h1>
       ) : (
-        Object.keys(exState).map((key) => {
-          const item = exState[key];
+        Object.keys(users).map((key) => {
+          const item = users[key];
           return (
             <StyledLearnedItem key={key}>
               <StyledLearned>{item.learned}</StyledLearned>

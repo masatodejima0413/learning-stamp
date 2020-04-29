@@ -7,22 +7,30 @@ import {
   StyledLabel,
   StyledLabelInputWrapper,
   StyledButton,
-} from "./styles";
+  StyledLoginFailed,
+} from "./Login.styles";
 
-const Login = () => {
+const Login = ({ PassCheck }) => {
   const [inputUserName, setInputUserName] = useState("");
   const [inputPassword, setInputPassword] = useState("");
   const [users, setUsers] = useState({});
-  let loginUsername;
-  let history = useHistory();
+  const [isLoginFailed, setIsLoginFailed] = useState(false);
+  const history = useHistory();
 
   const handleLogin = () => {
-    LoginCheck();
+    let loginUsername = PassCheck(users, inputUserName, inputPassword);
     setInputUserName("");
     setInputPassword("");
+    ToMainPage(loginUsername);
+  };
+
+  const ToMainPage = (loginUsername) => {
     //このURLに飛ぶ。<Link to=> だとレンダリングする前にはloginUsernameが空だから無理
     if (loginUsername !== undefined) {
+      setIsLoginFailed(false);
       history.push(`/${loginUsername}`);
+    } else {
+      setIsLoginFailed(true);
     }
   };
   const getDb = () => {
@@ -35,18 +43,6 @@ const Login = () => {
     getDb();
   }, []);
 
-  const LoginCheck = () => {
-    Object.keys(users).forEach((user) => {
-      if (
-        inputUserName === users[user].username &&
-        inputPassword === users[user].password
-      ) {
-        loginUsername = user;
-        console.log(`${loginUsername} will login!!`);
-        return;
-      }
-    });
-  };
   return (
     <>
       <StyledFormTitle>Login</StyledFormTitle>
@@ -67,6 +63,11 @@ const Login = () => {
         />
       </StyledLabelInputWrapper>
       <StyledButton onClick={handleLogin}>Login</StyledButton>
+      {isLoginFailed && (
+        <StyledLoginFailed>
+          Your username or password is incorrect
+        </StyledLoginFailed>
+      )}
     </>
   );
 };
