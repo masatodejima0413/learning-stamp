@@ -7,13 +7,17 @@ export const StyledFormWrapper = styled.div`
   align-items: center;
   width: 400px;
   min-height: 300px;
-  margin: 20px auto 50px auto;
+  margin: 50px auto 50px auto;
   padding: 30px;
   font-family: "Poppins", sans-serif;
   /* background-color: #93b5c6; */
   background: rgba(93, 2, 255, 0.4);
   border-radius: 10px;
   position: relative;
+  @media (max-width: 480px) {
+    box-sizing: border-box;
+    width: 95%;
+  }
   &::before {
     content: "";
     position: absolute;
@@ -36,6 +40,13 @@ export const StyledFormWrapper = styled.div`
     background: linear-gradient(235deg, #5d02ff, #fff, #e91e63);
     z-index: -1;
     filter: blur(40px);
+  }
+`;
+
+export const StyledWelcomeUser = styled.h1`
+  color: #fff;
+  @media (max-width: 480px) {
+    font-size: 25px;
   }
 `;
 

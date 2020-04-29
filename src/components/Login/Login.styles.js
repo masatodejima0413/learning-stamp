@@ -21,6 +21,10 @@ export const FormWrapper = styled.div`
     80%,
     rgba(233, 30, 99, 0.8) 100%
   );
+  @media (max-width: 480px) {
+    box-sizing: border-box;
+    width: 95%;
+  }
 `;
 
 export const StyledFormTitle = styled.div`
@@ -83,4 +87,9 @@ export const StyledToggleText = styled.span`
   &:hover {
     opacity: 0.4;
   }
+`;
+
+export const StyledLoginFailed = styled.div`
+  color: red;
+  padding-top: 15px;
 `;

@@ -1,17 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyledFormWrapper,
+  StyledWelcomeUser,
   StyledLearnedInput,
   StyledDateInput,
   StyledCommentTextarea,
   SendIcon,
 } from "./Form.styles";
-import { databaseRef } from "../../../base/base";
+import { databaseRef, database } from "../../../base/base";
 
 const Form = ({ userId }) => {
   const [learned, setLearned] = useState("");
   const [date, setDate] = useState("");
   const [comment, setComment] = useState("");
+  const [username, setUsername] = useState("");
+
+  useEffect(() => {
+    const ref = database.ref("users/");
+    ref.on("value", (snapshot) => {
+      setUsername(snapshot.val()[userId].username);
+    });
+    // eslint-disable-next-line
+  }, []);
 
   //当日をyyyy-mm-ddで
   //   var today = new Date();
@@ -38,6 +48,7 @@ const Form = ({ userId }) => {
 
   return (
     <StyledFormWrapper>
+      <StyledWelcomeUser>Hi, {username}!!</StyledWelcomeUser>
       <StyledLearnedInput
         placeholder="What did you learn?"
         rows="5"

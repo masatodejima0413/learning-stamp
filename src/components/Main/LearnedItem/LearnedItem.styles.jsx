@@ -13,6 +13,10 @@ export const StyledLearnedItem = styled.div`
   flex-direction: column;
   align-items: center;
   background: #fff;
+  @media (max-width: 480px) {
+    box-sizing: border-box;
+    width: 95%;
+  }
   &::after {
     content: "";
     position: absolute;

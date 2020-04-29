@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { databaseRef } from "../../base/base";
 import {
   StyledFormTitle,
@@ -6,19 +7,33 @@ import {
   StyledLabel,
   StyledLabelInputWrapper,
   StyledButton,
-} from "./styles";
+} from "./Login.styles";
 
 const SignUp = () => {
   const [inputUserName, setInputUserName] = useState("");
   const [inputPassword, setInputPassword] = useState("");
+  const history = useHistory();
 
   const handleSignUp = () => {
-    databaseRef
+    ToMainPage(AddDb());
+  };
+
+  const AddDb = () => {
+    const ref = databaseRef
       .child("users")
       .push({ username: inputUserName, password: inputPassword });
-    setInputUserName("");
-    setInputPassword("");
+    return ref.key;
   };
+
+  const ToMainPage = (newUserId, cb) => {
+    //このURLに飛ぶ。<Link to=> だとレンダリングする前にはnewUserIdが空だから無理
+    if (newUserId !== undefined) {
+      history.push(`/${newUserId}`);
+    } else {
+      throw new Error("User not defined.");
+    }
+  };
+
   return (
     <>
       <StyledFormTitle>Sign Up</StyledFormTitle>
